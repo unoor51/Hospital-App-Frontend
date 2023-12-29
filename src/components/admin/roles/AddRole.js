@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../Layout";
 
 function AddRole() {
+  const [formData, setFormData] = useState({
+    // Initialize form fields and their initial values
+    roleName: "",
+  });
+
+  const handleChange = (e) => {
+    // Update form data as the user types
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic (e.g., send data to a server)
+    console.log("Form submitted:", formData);
+  };
+
   return (
     <div>
       <Layout>
@@ -34,7 +53,37 @@ function AddRole() {
           <section className="content">
             <div className="container-fluid">
               {/* Small boxes (Stat box) */}
-              <div className="row"></div>
+              <div className="row">
+                <div className="col-md-12">
+                  {/* general form elements */}
+                  <div className="card card-default">
+                    {/* form start */}
+                    <form onSubmit={handleSubmit}>
+                      <div className="card-body">
+                        <div className="form-group">
+                          <label htmlFor="roleName">Role Name</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="roleName"
+                            name="roleName"
+                            placeholder="Enter Role Name"
+                            value={formData.roleName}
+                            onChange={handleChange}
+                          />
+                        </div>
+                      </div>
+                      {/* /.card-body */}
+                      <div className="card-footer">
+                        <button type="submit" className="btn btn-primary">
+                          Add
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  {/* /.card */}
+                </div>
+              </div>
               {/* /.row */}
             </div>
             {/* /.container-fluid */}

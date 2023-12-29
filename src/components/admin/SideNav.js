@@ -68,10 +68,13 @@ function SideNav() {
             >
               {/* Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library */}
-              {/* <Link to="/">Home</Link> */}
 
               <li className="nav-item menu-open">
-                <NavLink to="/dashboard" className="nav-link active">
+                <NavLink
+                  to="/dashboard"
+                  className="nav-link"
+                  activeClassName="active"
+                >
                   <FontAwesomeIcon icon={faDashboard} className="nav-icon" />
                   <p>Dashboard</p>
                 </NavLink>
@@ -92,7 +95,11 @@ function SideNav() {
                       <p>Roles List</p>
                     </a>
                   </li>
-                  <NavLink to="/addRole" className="nav-link active">
+                  <NavLink
+                    to="/addRole"
+                    className="nav-link"
+                    activeClassName="active"
+                  >
                     <i className="far fa-circle nav-icon" />
                     <p>Add Role</p>
                   </NavLink>
