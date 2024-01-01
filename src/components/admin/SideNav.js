@@ -73,7 +73,7 @@ function SideNav() {
                 <NavLink
                   to="/dashboard"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   <FontAwesomeIcon icon={faDashboard} className="nav-icon" />
                   <p>Dashboard</p>
@@ -89,26 +89,23 @@ function SideNav() {
                   </p>
                 </a>
                 <ul className="nav nav-treeview">
-                  <li className="nav-item">
-                    <a href="#" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
-                      <p>Roles List</p>
-                    </a>
-                  </li>
+                  <NavLink
+                    to="/roles"
+                    className="nav-link"
+                    activeclassname="active"
+                  >
+                    <i className="far fa-circle nav-icon" />
+                    <p>Roles List</p>
+                  </NavLink>
                   <NavLink
                     to="/addRole"
                     className="nav-link"
-                    activeClassName="active"
+                    activeclassname="active"
                   >
                     <i className="far fa-circle nav-icon" />
                     <p>Add Role</p>
                   </NavLink>
-                  {/* <li className="nav-item">
-                    <a href="#" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
-                      <p>Add Role</p>
-                    </a>
-                  </li> */}
+
                   <li className="nav-item">
                     <a href="#" className="nav-link">
                       <i className="far fa-circle nav-icon" />

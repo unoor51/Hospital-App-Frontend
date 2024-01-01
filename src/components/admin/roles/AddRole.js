@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Layout from "../Layout";
+import SuccessMessage from "../SuccessMessage";
 
 function AddRole() {
   const [formData, setFormData] = useState({
     // Initialize form fields and their initial values
     roleName: "",
   });
-
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const handleChange = (e) => {
     // Update form data as the user types
     setFormData({
@@ -15,10 +16,39 @@ function AddRole() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission logic (e.g., send data to a server)
-    console.log("Form submitted:", formData);
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/roles", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          role_name: formData.roleName,
+          // Add other fields as needed
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // console.log(data.role + " Role created successfully");
+        // Handle success, e.g., show a success message or redirect
+        setIsSubmitted(true);
+      } else {
+        console.error(
+          "Failed to create role:",
+          response.status,
+          response.statusText
+        );
+        // Handle error, e.g., show an error message to the user
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      // Handle other errors, e.g., network issues
+    }
   };
 
   return (
@@ -52,6 +82,10 @@ function AddRole() {
           {/* Main content */}
           <section className="content">
             <div className="container-fluid">
+              {console.log(isSubmitted)}
+              {isSubmitted && (
+                <SuccessMessage message="Role added successfully!" />
+              )}
               {/* Small boxes (Stat box) */}
               <div className="row">
                 <div className="col-md-12">
